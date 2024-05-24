@@ -49,7 +49,7 @@ const server = http.createServer((req, res) => {
         req.on('end', () => {
         
             const formData = JSON.parse(body);
-            const jsonFormData = JSON.stringify(formData);
+            const jsonFormData = JSON.stringify(formData) + ',\n';
     
             fs.appendFile('database.json', jsonFormData, (err) => {
                 if (err) {
