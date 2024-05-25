@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
     
     if (req.method === 'GET' && req.url === '/') {
     // Serve the HTML file
-        fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
+        fs.readFile('./index.html', (err, data) => {
             if (err) {
                 console.log(err);
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
