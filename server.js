@@ -4,7 +4,6 @@ const fs = require("fs");
 const server = http.createServer((req, res) => {
 
     console.log("got into the server");
-    console.log(path.join(__dirname, 'index.html'));
     // res.setHeader('Access-Control-Allow-Origin', '*'); 
     // res.setHeader('Access-Control-Allow-Methods', 'POST');
     // res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); 
@@ -18,7 +17,7 @@ const server = http.createServer((req, res) => {
     
     if (req.method === 'GET' && req.url === '/') {
     // Serve the HTML file
-        fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
+        fs.readFile('./index.html', (err, data) => {
             if (err) {
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
                 res.end('Internal Server Error');
