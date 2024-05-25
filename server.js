@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
     
     if (req.method === 'GET' && req.url === '/') {
     // Serve the HTML file
-        fs.readFile('index.html', (err, data) => {
+        fs.readFile('./index.html', (err, data) => {
             if (err) {
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
                 res.end('Internal Server Error');
