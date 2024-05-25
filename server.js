@@ -3,6 +3,7 @@ const fs = require("fs");
   
 const server = http.createServer((req, res) => {
 
+    console.log("got into the server");
     // res.setHeader('Access-Control-Allow-Origin', '*'); 
     // res.setHeader('Access-Control-Allow-Methods', 'POST');
     // res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); 
