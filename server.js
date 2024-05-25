@@ -21,6 +21,7 @@ const server = http.createServer((req, res) => {
     // Serve the HTML file
         fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
             if (err) {
+                console.log(err);
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
                 res.end('Internal Server Error');
             } else {
