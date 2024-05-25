@@ -2,6 +2,9 @@
     "version": 2,
     "builds": [{"src":"./server.js", "use": "@vercel/node"}],
     "routes": [
-        {"src": "/(.*)", "dest": "/var/task/"}
+        {"src": "/index", "dest": "/var/task/index.html"},
+        {"src": "/index.css", "dest": "/var/task/index.css"},
+        {"src": "/index.js", "dest": "/var/task/script.js"},
+        {"src": "/(.*)", "dest": "/server.js"}
     ]
 }
