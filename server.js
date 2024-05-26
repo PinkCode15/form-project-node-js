@@ -43,7 +43,7 @@ const server = http.createServer((req, res) => {
 
             let filePath = path.join(__dirname, "database.json");
 
-            fs.readFile(filePath, (err, data) => {
+            fs.readFile(filePath, "utf-8", (err, data) => {
                 if (err) {
                     console.error('Error reading file:', err);
                     res.writeHead(500);
@@ -62,9 +62,9 @@ const server = http.createServer((req, res) => {
                 fs.writeFile('./database.json', jsonData, (err) => {
                     if (err) {
                         console.error('Error writing to file:', err);
-                        res.writeHead(500);
-                        res.end(JSON.stringify({ message: 'Internal Server Error' }));
-                        return;
+                        // res.writeHead(500);
+                        // res.end(JSON.stringify({ message: 'Internal Server Error' }));
+                        // return;
                     }
                     console.log('Form data saved successfully.');
                     console.log('File content:', jsonData);
