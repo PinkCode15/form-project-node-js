@@ -41,9 +41,10 @@ const server = http.createServer((req, res) => {
             const formData = JSON.parse(body);
             let jsonData = [];
 
-            let filePath = path.join(__dirname, 'tmp', 'database.json');
+            // let filePath = '/tmp/database.json';
+            let filePath = path.join(__dirname, "database.json");
 
-            fs.readFile(filePath, (err, data) => {
+            fs.readFile(filePath, "utf-8", (err, data) => {
                 if (err) {
                     console.error('Error reading file:', err);
                     res.writeHead(500);
@@ -59,7 +60,7 @@ const server = http.createServer((req, res) => {
 
                 jsonData = JSON.stringify(jsonData, null, 2);
 
-                fs.writeFile('/tmp/database.json', jsonData, (err) => {
+                fs.writeFile('./database.json', jsonData, (err) => {
                     if (err) {
                         console.error('Error writing to file:', err);
                         res.writeHead(500);
