@@ -69,10 +69,18 @@ const server = http.createServer((req, res) => {
                     "./database.json",
                     jsonData,
                     (err) => {
-                        if (err) console.log(err);
+                        if (err) {
+                            console.error('Error writing to file:', err);
+                            res.writeHead(500);
+                            res.end(JSON.stringify({ message: 'Internal Server Error' }));
+                            return;
+                        }
+
+                        console.log('File contenting:', jsonData);
                     }
                 );
 
+                console.log("plsss work");
                 console.log('File content:', jsonData);
                 // fs.writeFile('./database.json', jsonData, (err) => {
                 //     if (err) {
@@ -88,7 +96,7 @@ const server = http.createServer((req, res) => {
                 // });
             });
 
-            console.log('Form data saved successfully.');
+            console.log('Form data saved.');
             res.writeHead(200);
             res.end(JSON.stringify({ message: 'Form data saved successfully.' }));
         });
