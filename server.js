@@ -85,8 +85,6 @@ const getExtensionName = (file_path) => {
         return "text/html";
     } else if (extensionName === ".css") {
         return "text/css";
-    } else if (extensionName === ".ico") {
-        return "image/x-icon";
     } else {
         return "application/json";
     }
