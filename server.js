@@ -63,15 +63,17 @@ const server = http.createServer((req, res) => {
 
                 jsonData.push(formData);
 
-                // jsonData = JSON.stringify(jsonData, null, 2);
+                jsonData = JSON.stringify(jsonData, null, 2);
 
                 fs.writeFile(
                     "./database.json",
-                    JSON.stringify(jsonData, null, 2),
+                    jsonData,
                     (err) => {
                         if (err) console.log(err);
                     }
                 );
+
+                console.log('File content:', jsonData);
                 // fs.writeFile('./database.json', jsonData, (err) => {
                 //     if (err) {
                 //         console.error('Error writing to file:', err);
@@ -87,7 +89,6 @@ const server = http.createServer((req, res) => {
             });
 
             console.log('Form data saved successfully.');
-            console.log('File content:', jsonData);
             res.writeHead(200);
             res.end(JSON.stringify({ message: 'Form data saved successfully.' }));
         });
