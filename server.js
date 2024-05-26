@@ -62,9 +62,9 @@ const server = http.createServer((req, res) => {
                 fs.writeFile('./database.json', jsonData, (err) => {
                     if (err) {
                         console.error('Error writing to file:', err);
-                        // res.writeHead(500);
-                        // res.end(JSON.stringify({ message: 'Internal Server Error' }));
-                        // return;
+                        res.writeHead(500);
+                        res.end(JSON.stringify({ message: 'Internal Server Error' }));
+                        return;
                     }
                     console.log('Form data saved successfully.');
                     console.log('File content:', jsonData);
