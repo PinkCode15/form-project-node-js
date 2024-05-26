@@ -31,20 +31,20 @@ const server = http.createServer((req, res) => {
             res.end(data);
         });
     } else if (method === 'POST' && url === '/submit') {
-        // let body = '';
+        let body = '';
 
-        // req.on('data', (chunk) => {
-        //     body += chunk.toString();
-        // });
-
-        let body = [];
-
-        req.on("data", (chunk) => {
-            body.push(chunk);
+        req.on('data', (chunk) => {
+            body += chunk.toString();
         });
 
+        // let body = [];
+
+        // req.on("data", (chunk) => {
+        //     body.push(chunk);
+        // });
+
         req.on('end', () => {
-            const formData = JSON.parse(Buffer.concat(body).toString()); //JSON.parse(body);
+            const formData = JSON.parse(body);
             let jsonData = [];
 
             let filePath = path.join(__dirname, "database.json");
