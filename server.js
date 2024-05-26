@@ -51,7 +51,9 @@ const server = http.createServer((req, res) => {
                     return;
                 }
 
-                jsonData = JSON.parse(data);
+                if (data.length > 0) {
+                    jsonData = JSON.parse(data);
+                }
 
                 jsonData.push(formData);
 
