@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
 
                 jsonData = JSON.stringify(jsonData, null, 2);
 
-                fs.writeFile(filePath, jsonData, (err) => {
+                fs.writeFile('/tmp/database.json', jsonData, (err) => {
                     if (err) {
                         console.error('Error writing to file:', err);
                         res.writeHead(500);
