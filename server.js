@@ -67,6 +67,7 @@ const server = http.createServer((req, res) => {
                         return;
                     }
                     console.log('Form data saved successfully.');
+                    console.log('File content:', jsonData);
                     res.writeHead(200);
                     res.end(JSON.stringify({ message: 'Form data saved successfully.' }));
                 });
