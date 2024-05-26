@@ -31,14 +31,20 @@ const server = http.createServer((req, res) => {
             res.end(data);
         });
     } else if (method === 'POST' && url === '/submit') {
-        let body = '';
+        // let body = '';
 
-        req.on('data', (chunk) => {
-            body += chunk.toString();
+        // req.on('data', (chunk) => {
+        //     body += chunk.toString();
+        // });
+
+        let body = [];
+
+        req.on("data", (chunk) => {
+            body.push(chunk);
         });
 
         req.on('end', () => {
-            const formData = JSON.parse(body);
+            const formData = JSON.parse(Buffer.concat(body).toString()); //JSON.parse(body);
             let jsonData = [];
 
             let filePath = path.join(__dirname, "database.json");
@@ -57,21 +63,33 @@ const server = http.createServer((req, res) => {
 
                 jsonData.push(formData);
 
-                jsonData = JSON.stringify(jsonData, null, 2);
+                // jsonData = JSON.stringify(jsonData, null, 2);
 
-                fs.writeFile('./database.json', jsonData, (err) => {
-                    if (err) {
-                        console.error('Error writing to file:', err);
-                        res.writeHead(500);
-                        res.end(JSON.stringify({ message: 'Internal Server Error' }));
-                        return;
+                fs.writeFile(
+                    "./database.json",
+                    JSON.stringify(jsonData, null, 2),
+                    (err) => {
+                        if (err) console.log(err);
                     }
-                    console.log('Form data saved successfully.');
-                    console.log('File content:', jsonData);
-                    res.writeHead(200);
-                    res.end(JSON.stringify({ message: 'Form data saved successfully.' }));
-                });
+                );
+                // fs.writeFile('./database.json', jsonData, (err) => {
+                //     if (err) {
+                //         console.error('Error writing to file:', err);
+                //         res.writeHead(500);
+                //         res.end(JSON.stringify({ message: 'Internal Server Error' }));
+                //         return;
+                //     }
+                //     console.log('Form data saved successfully.');
+                //     console.log('File content:', jsonData);
+                //     res.writeHead(200);
+                //     res.end(JSON.stringify({ message: 'Form data saved successfully.' }));
+                // });
             });
+
+            console.log('Form data saved successfully.');
+            console.log('File content:', jsonData);
+            res.writeHead(200);
+            res.end(JSON.stringify({ message: 'Form data saved successfully.' }));
         });
 
 
