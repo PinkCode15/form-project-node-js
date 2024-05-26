@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
             const formData = JSON.parse(body);
             let jsonData = [];
 
-            let filePath = path.join(__dirname, "public", 'database.json');
+            let filePath = path.join(__dirname, 'database.json');
 
             fs.readFile(filePath, (err, data) => {
                 if (err) {
@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
 
                 jsonData = JSON.stringify(jsonData, null, 2);
 
-                fs.writeFile('database.json', jsonData, (err) => {
+                fs.writeFile('./database.json', jsonData, (err) => {
                     if (err) {
                         console.error('Error writing to file:', err);
                         res.writeHead(500);
