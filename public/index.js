@@ -75,7 +75,7 @@ const formObject = {
     gender: document.getElementById("gender").value
 };
 
-fetch("https://form-project-node-js.vercel.app/submit", {
+fetch("/submit", {
     method: "POST",
     headers: {
     "Content-Type": "application/json"
