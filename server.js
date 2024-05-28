@@ -37,12 +37,6 @@ const server = http.createServer((req, res) => {
             body += chunk.toString();
         });
 
-        // let body = [];
-
-        // req.on("data", (chunk) => {
-        //     body.push(chunk);
-        // });
-
         req.on('end', () => {
             const formData = JSON.parse(body);
             let jsonData = [];
@@ -65,20 +59,18 @@ const server = http.createServer((req, res) => {
 
                 jsonData = JSON.stringify(jsonData, null, 2);
 
-                fs.writeFile(
-                    "./database.json",
-                    jsonData,
-                    (err) => {
-                        if (err) {
-                            console.error('Error writing to file:', err);
-                            res.writeHead(500);
-                            res.end(JSON.stringify({ message: 'Internal Server Error' }));
-                            return;
-                        }
+                console.log('File contenting read:', jsonData);
 
-                        console.log('File contenting:', jsonData);
+                fs.writeFile("./database.json", jsonData, (err) => {
+                    if (err) {
+                        console.error('Error writing to file:', err);
+                        res.writeHead(500);
+                        res.end(JSON.stringify({ message: 'Internal Server Error' }));
+                        return;
                     }
-                );
+
+                    console.log('File contenting write:', jsonData);
+                });
 
                 console.log("plsss work");
                 console.log('File content:', jsonData);
