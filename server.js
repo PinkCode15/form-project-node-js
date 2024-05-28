@@ -59,8 +59,6 @@ const server = http.createServer((req, res) => {
 
                 jsonData = JSON.stringify(jsonData, null, 2);
 
-                console.log('File contenting read:', jsonData);
-
                 fs.writeFile("./database.json", jsonData, (err) => {
                     if (err) {
                         console.error('Error writing to file:', err);
@@ -69,74 +67,13 @@ const server = http.createServer((req, res) => {
                         return;
                     }
 
-                    console.log('File contenting write:', jsonData);
                 });
-
-                console.log("plsss work");
-                console.log('File content:', jsonData);
-                // fs.writeFile('./database.json', jsonData, (err) => {
-                //     if (err) {
-                //         console.error('Error writing to file:', err);
-                //         res.writeHead(500);
-                //         res.end(JSON.stringify({ message: 'Internal Server Error' }));
-                //         return;
-                //     }
-                //     console.log('Form data saved successfully.');
-                //     console.log('File content:', jsonData);
-                //     res.writeHead(200);
-                //     res.end(JSON.stringify({ message: 'Form data saved successfully.' }));
-                // });
             });
 
             console.log('Form data saved.');
             res.writeHead(200);
             res.end(JSON.stringify({ message: 'Form data saved successfully.' }));
         });
-
-
-        // let body = [];
-
-        // req.on("data", (chunk) => {
-        //     body.push(chunk);
-        // });
-
-        // req.on("end", () => {
-        //     let goo = JSON.parse(Buffer.concat(body).toString());
-        //     let db;
-
-        //     fs.readFile(
-        //         path.join(__dirname, "database.json"),
-        //         "utf-8",
-        //         (err, data) => {
-        //             if (err) console.log(err);
-        //             db = JSON.parse(data);
-        //             db.push(goo);
-
-        //             fs.writeFile(
-        //                 "./database.json",
-        //                 JSON.stringify(db, null, 2),
-        //                 (err) => {
-        //                     if (err) console.log(err);
-        //                 }
-        //             );
-        //         }
-        //     );
-
-        //     res.writeHead(200, {
-        //         "Content-Type": "application/json",
-        //         "Access-Control-Allow-Origin": "*",
-        //         "Access-Control-Allow-Methods": "OPTIONS, POST",
-        //         "Access-Control-Allow-Headers": "content-type",
-        //     });
-
-        //     res.write(
-        //         JSON.stringify({
-        //             status: "success",
-        //             msg: goo,
-        //         })
-        //     );
-        //     res.end();
-        // });
 
         return;
     } else {
